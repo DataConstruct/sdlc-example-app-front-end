@@ -116,6 +116,7 @@ namespace Microsoft.eShopOnContainers.WebMVC
 
         public static IServiceCollection AddAppInsight(this IServiceCollection services, IConfiguration configuration)
         {
+            services.AddSingleton<ITelemetryInitializer>(new CloudRoleNameInitializer("front-end"));
             services.AddApplicationInsightsTelemetry(configuration);
             var orchestratorType = configuration.GetValue<string>("OrchestratorType");
 
